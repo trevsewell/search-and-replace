@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $(dpkg-query -W -f='${Status}' vim 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  echo "you must install Vim first."
+  echo "apt install vim"
+  exit 1
+fi
+
+vim -c "%s/$1/$2/g | write | quit" $3
